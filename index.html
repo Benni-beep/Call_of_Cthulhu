@@ -24,16 +24,21 @@
 </head>
 
 <body>
-  <p id="root">This is an element</p>
-  <p class="some-class">1. js: define model for character</p>
-  <p>1.1. how does a character look like? which stats? what type do the stats have?</p>
-  <p>1.2. hard-coding of example model</p>
-  <p>2. build html for character sheet, without any interactivity</p>
-  <p class="some-class">2.1. which form fields do we need?</p>
-  <p>3. remove hard-coded values from model and make them dynamic</p>
-  <p>4. connect html to javascript model</p>
-  <p>5. persist the character data in browser local storage</p>
+  <p>... character sheet</p>
+  <div>
+    <label for="character-name">Name:
+      <input name="character-name" type="text">
+    </label>
+
+    <label for="character-age">Age:
+      <input name="character-age" type="number" min="18" max="85" pattern="[0-9]+">
+    </label>
+
+    <input type="checkbox">
+    <input type="date">
+  </div>
 </body>
+
 <script>
   const character = {
     name: "Betsy Barrows",
@@ -115,11 +120,7 @@
         dcHard: 20,
         dcExtreme: 8
       },
-      creditRating: {
-        dc: 30,
-        dcHard: 15,
-        dcExtreme: 6
-      },
+      creditRating: 30,
       combat: {
         damageBonus: "+1d4",
         build: "+1",
@@ -133,7 +134,7 @@
           dcHard: 11,
           dcExtreme: 4,
           damage: "1d3 + dB",
-          range: "-"
+          range: undefined
         },
         meleeAxe: {
           dc: 70,
@@ -141,7 +142,7 @@
           dcExtreme: 14,
           weapon: "Axe",
           damage: "1d8 + 2 + dB",
-          range: "-"
+          range: undefined
         },
         rangedHandgun: {
           dc: 70,
@@ -159,6 +160,42 @@
         },
       },
     },
+  }
+
+  const nameInput = document.querySelector("input[name='character-name']");
+  nameInput.value = character.name;
+
+  const ageInput = document.querySelector("input[name='character-age']");
+  ageInput.value = character.age;
+
+  console.log('our original model: ', character);
+
+  // immer wenn der nutzer den `value` von `nameInput` anpasst
+  nameInput.addEventListener("change", overwriteCharacterName);
+  ageInput.addEventListener("change", overwriteCharacterAge);
+
+  // überschreibe den wert in unserem model
+  function overwriteCharacterName(changeEvent) {
+    const newName = changeEvent.target.value;
+    character.name = newName;
+    console.log('our new model: ', character);
+  }
+
+  function overwriteCharacterAge(changeEvent) {
+    const newAge = parseInt(changeEvent.target.value, 10);
+    
+    console.log(typeof newAge);
+    if (Number.isInteger(newAge)) {
+      console.log(newAge);
+      character.age = newAge;
+    }    
+    else {
+      window.alert("please enter a number");
+    }
+
+
+
+    console.log('our new model: ', character);
   }
 </script>
 
