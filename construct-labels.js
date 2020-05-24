@@ -1,4 +1,4 @@
-const characterBio = {
+const character = {
     name: "Betsy Barrows",
     playerName: "Basti",
     occupation: "Hausmeisterin / Mechanikerin",
@@ -93,7 +93,6 @@ function constructLabels(obj) {
     labelString = "";
     typeEntry = "";
     objArray = Object.entries(obj);
-
     for (let element of objArray) {
         switch (typeof element[1]) {
             case "number": typeEntry = "number";
