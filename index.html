@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="description">
   <meta name="author" content="">
-  <title>title</title>
+  <title>Call of Cthulhu 1920 Charactersheet</title>
   <style>
     .some-class {
       background-color: green;
@@ -24,16 +24,125 @@
 </head>
 
 <body>
-  <p id="root">This is an element</p>
-  <p class="some-class">1. js: define model for character</p>
-  <p>1.1. how does a character look like? which stats? what type do the stats have?</p>
-  <p>1.2. hard-coding of example model</p>
-  <p>2. build html for character sheet, without any interactivity</p>
-  <p class="some-class">2.1. which form fields do we need?</p>
-  <p>3. remove hard-coded values from model and make them dynamic</p>
-  <p>4. connect html to javascript model</p>
-  <p>5. persist the character data in browser local storage</p>
+  <p>... character sheet</p>
+  BIO
+  <div>
+    <label for="character-name"> Character Name:
+      <input name="character-name" type="text">
+    </label>
+
+    <label for="character-playerName"> played by:
+      <input name="character-playerName" type="text">
+    </label>
+
+    <label for="character-occupation"> Occupation:
+      <input name="character-occupation" type="text">
+    </label>
+
+    <label for="character-birthday"> Birthday:
+      <input name="character-birthday" type="date">
+    </label>
+
+    <label for="character-age"> Age:
+      <input name="character-age" type="number">
+    </label>
+
+    <label for="character-gender"> Gender:
+      <input name="character-gender" type="text">
+    </label>
+
+    <label for="character-placeOfResidence"> Place of Residence:
+      <input name="character-placeOfResidence" type="text">
+    </label>
+
+    <label for="character-placeOfBirth"> Place of Birth:
+      <input name="character-placeOfBirth" type="text">
+    </label>
+
+    <!-- <input type="checkbox">
+    <input type="date"> -->
+  </div>
+
+  ATTRIBUTES
+  <div>
+    <label for="character-strength"> Strength:
+      <input name="character-strength" type="number">
+    </label>
+
+    <label for="character-constitution"> Constitution:
+      <input name="character-constitution" type="number">
+    </label>
+
+    <label for="character-size"> Size:
+      <input name="character-size" type="number">
+    </label>
+
+    <label for="character-dexterity"> Dexterity:
+      <input name="character-dexterity" type="number">
+    </label>
+
+    <label for="character-appearance"> Appearance:
+      <input name="character-appearance" type="number">
+    </label>
+
+    <label for="character-intelligence"> Intelligence:
+      <input name="character-intelligence" type="number">
+    </label>
+
+    <label for="character-power"> Power:
+      <input name="character-power" type="number">
+    </label>
+
+    <label for="character-education"> Education:
+      <input name="character-education" type="number">
+    </label>
+
+    <label for="character-movement"> Movement:
+      <input name="character-movement" type="number">
+    </label>
+
+    <label for="character-luck"> Luck:
+      <input name="character-luck" type="number">
+    </label>
+
+    <label for="character-sanity"> Sanity:
+      <input name="character-sanity" type="number">
+    </label>
+
+    <label for="character-hitPoints"> HitPoints:
+      <input name="character-hitPoints" type="number">
+    </label>
+
+    <label for="character-magicPoints"> MagicPoints:
+      <input name="character-magicPoints" type="number">
+    </label>
+  </div>
+
+  SKILLS
+  <div>
+    <label for="character-skill-firstAid"> First Aid:
+      <input name="character-skill-firstAid" type="number">
+    </label>
+
+    <label for="character-skill-creditRating"> Credit Rating:
+      <input name="character-skill-creditRating" type="number">
+    </label>
+
+  </div>
+
+  COMBAT
+  <div>    
+    <label for="character-skill-dodge"> Dodge:
+      <input name="character-skill-dodge" type="number">
+    </label>
+
+    <label for="character-skill-meleeBrawl"> Melee (Brawl):
+      <input name="character-skill-meleeBrawl" type="number">
+    </label>
+
+  </div>
 </body>
+
 <script>
   const character = {
     name: "Betsy Barrows",
@@ -115,11 +224,7 @@
         dcHard: 20,
         dcExtreme: 8
       },
-      creditRating: {
-        dc: 30,
-        dcHard: 15,
-        dcExtreme: 6
-      },
+      creditRating: 30,
       combat: {
         damageBonus: "+1d4",
         build: "+1",
@@ -133,7 +238,7 @@
           dcHard: 11,
           dcExtreme: 4,
           damage: "1d3 + dB",
-          range: "-"
+          range: undefined
         },
         meleeAxe: {
           dc: 70,
@@ -141,7 +246,7 @@
           dcExtreme: 14,
           weapon: "Axe",
           damage: "1d8 + 2 + dB",
-          range: "-"
+          range: undefined
         },
         rangedHandgun: {
           dc: 70,
@@ -160,6 +265,81 @@
       },
     },
   }
+
+  const nameInput = document.querySelector("input[name='character-name']");
+  nameInput.value = character.name;
+
+  const ageInput = document.querySelector("input[name='character-age']");
+  ageInput.value = character.age;
+
+  // const nameInput = document.querySelector("input[name='character-name']");
+  // nameInput.value = character.name;
+  // nameInput.addEventListener("change", overwriteCharacterString);
+
+  // const playerNameInput = document.querySelector("input[name='character-playerName']");
+  // playerNameInput.value = character.playerName;
+  // playerNameInput.addEventListener("change", overwriteCharacterString);
+
+  // const occupationInput = document.querySelector("input[name='character-occupation']");
+  // occupationInput.value = character.occupation;
+  // occupationInput.addEventListener("change", overwriteCharacterString);
+
+  // // // how do you change "date"s
+  // // const birthdayInput = document.querySelector("input[name='character-birthday']");
+  // // birthdayInput.value = character.birthday;
+  // // birthdayInput.addEventListener("change", overwriteCharacterString);
+
+  // const ageInput = document.querySelector("input[name='character-age']");
+  // ageInput.value = character.age;
+  // ageInput.addEventListener("change", overwriteCharacterNumber);
+
+  // const genderInput = document.querySelector("input[name='character-gender']");
+  // genderInput.value = character.gender;
+  // genderInput.addEventListener("change", overwriteCharacterString);
+
+  // const placeOfResidenceInput = document.querySelector("input[name='character-placeOfResidence']");
+  // placeOfResidenceInput.value = character.placeOfResidence;
+  // placeOfResidenceInput.addEventListener("change", overwriteCharacterString);
+
+  // const placeOfBirthInput = document.querySelector("input[name='character-placeOfBirth']");
+  // placeOfBirthInput.value = character.placeOfBirth;
+  // placeOfBirthInput.addEventListener("change", overwriteCharacterString);
+
+  console.log('our original model: ', character);
+
+  // immer wenn der nutzer den `value` von `nameInput` anpasst
+  nameInput.addEventListener("change", overwriteCharacterName);
+  ageInput.addEventListener("change", overwriteCharacterAge);
+
+
+  // überschreibe den wert in unserem model
+  function overwriteCharacterString(changeEvent) {
+    const newName = changeEvent.target.value;
+    character.str = newName;
+    console.log('our new model: ', character);
+  }
+
+    function overwriteCharacterAge(changeEvent) {
+    const newAge = parseInt(changeEvent.target.value, 10);
+
+    if (Number.isInteger(newAge)) {
+      character.age = newAge;
+    }
+    else {
+      window.alert("please enter a number");
+    }
+    console.log('our new model: ', character);
+  }
+
+  /**
+   * was brauche ich?
+    function overwriteCharacterString(changeEvent) {
+    const newString = changeEvent.target.value;
+    character.[name] = newString;   -> der [ ]-Teil muss dynamisch sein
+    console.log('our new model: ', character);
+  }
+   */
+
 </script>
 
 </html>
